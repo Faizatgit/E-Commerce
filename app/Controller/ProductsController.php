@@ -4,7 +4,7 @@ App::uses('AppController','Controller');
 
 class ProductsController extends AppController{
     public $helpers = array('Html','Form');
-    public $component = array('Session');
+    public $components = array('Session' , 'Auth');
 
     public function beforeFilter()
     {

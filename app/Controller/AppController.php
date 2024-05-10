@@ -31,4 +31,22 @@ App::uses('Controller', 'Controller');
  * @link		https://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
+    // AppController.php
+public function initialize() {
+    parent::initialize();
+    $this->loadComponent('Auth', [
+        'loginAction' => [
+            'controller' => 'Users',
+            'action' => 'login'
+        ],
+        'authError' => 'Please login to access this page',
+        'authenticate' => [
+            'Form' => [
+                'fields' => ['username' => 'email', 'password' => 'password']
+            ]
+        ],
+        'authorize' => ['Controller'] // Optional authorization setup
+    ]);
+}
+
 }

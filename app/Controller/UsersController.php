@@ -3,13 +3,13 @@
 App::uses('AppController','Controller');
 App::uses('AuthComponent','Controller/Component');
 class UsersController extends AppController{
-    public $component = array('Session');
-
-    // public function beforeFilter()
-    // {
-    //     parent::beforeFilter();
-    //     $this->Auth->allow('login');
-    // }
+    public $components = array('Session' , 'Auth');
+    public $uses = array('User');
+    public function beforeFilter()
+    {
+        parent::beforeFilter();
+        $this->Auth->allow(['login','view']);
+    }
 
     public function signup()
     {
