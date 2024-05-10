@@ -2,15 +2,14 @@
 
 App::uses('AppController','Controller');
 App::uses('AuthComponent','Controller/Component');
-
 class UsersController extends AppController{
     public $component = array('Session');
 
-    // public function beforeFilter()
-    // {
-    //     parent::beforeFilter();
-    //     $this->Auth->allow('login');
-    // }
+    public function beforeFilter()
+    {
+        parent::beforeFilter();
+        $this->Auth->allow('login');
+    }
 
     public function signup()
     {
@@ -38,7 +37,7 @@ class UsersController extends AppController{
             if($user && AuthComponent::password($this->request->data['User']['password']) == $user['User']['password'])
             {
                 unset($User['User']['password']);
-                // $this->Session->write('User',$this->Auth->user());
+                $this->Session->write('User',$this->Auth->user());
                 $this->redirect($this->Auth->redirect(array('controller' => 'products' , 'action' , 'index')));
             }
             else{
@@ -48,7 +47,7 @@ class UsersController extends AppController{
     }
 
     public function logout() {
-        // $this->Session->destroy();
+        $this->Session->destroy();
         $this->redirect(array('controller' => 'user' , 'action' => 'login'));
     }
 }
