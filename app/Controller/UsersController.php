@@ -1,6 +1,7 @@
 <?php
 
 App::uses('AppController','Controller');
+App::uses('AuthComponent','Controller/Component');
 
 class UsersController extends AppController{
     public $component = array('Session');

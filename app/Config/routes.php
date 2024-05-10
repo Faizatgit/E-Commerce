@@ -48,9 +48,14 @@ Router::connect('/', array('controller' => 'products', 'action' => 'index'));
 
 // Route for user login
 Router::connect('/login', array('controller' => 'users', 'action' => 'login'));
-
+Router::connect('/signup', array('controller' => 'users', 'action' => 'signup'));
 // Route for user logout
 Router::connect('/logout', array('controller' => 'users', 'action' => 'logout'));
 
 // Route for products index with an additional check
 Router::connect('/products', array('controller' => 'products', 'action' => 'index', '[method]' => 'GET'));
+
+Router::connect('/products', array('controller' => 'products', 'action' => 'add', '[method]' => 'POST'));
+Router::connect('/products/:id', array('controller' => 'products', 'action' => 'view'), array('pass' => array('id'), 'id' => '[0-9]+'));
+Router::connect('/products/:id', array('controller' => 'products', 'action' => 'edit'), array('pass' => array('id'), 'id' => '[0-9]+'));
+Router::connect('/products/:id', array('controller' => 'products', 'action' => 'delete'), array('pass' => array('id'), 'id' => '[0-9]+'));
