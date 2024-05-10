@@ -42,3 +42,15 @@
  * the built-in default routes.
  */
 	require CAKE . 'Config' . DS . 'routes.php';
+
+// Default route for products index
+Router::connect('/', array('controller' => 'products', 'action' => 'index'));
+
+// Route for user login
+Router::connect('/login', array('controller' => 'users', 'action' => 'login'));
+
+// Route for user logout
+Router::connect('/logout', array('controller' => 'users', 'action' => 'logout'));
+
+// Route for products index with an additional check
+Router::connect('/products', array('controller' => 'products', 'action' => 'index', '[method]' => 'GET'));
